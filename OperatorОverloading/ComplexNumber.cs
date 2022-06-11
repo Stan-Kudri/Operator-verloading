@@ -50,6 +50,10 @@
 
             return new ComplexNumber(real, imaginary);
         }
+        public static ComplexNumber operator +(ComplexNumber firstNumber, ComplexNumber secondNumber) => Add(firstNumber, secondNumber);
+        public static ComplexNumber operator -(ComplexNumber firstNumber, ComplexNumber secondNumber) => Substract(firstNumber, secondNumber);
+        public static ComplexNumber operator *(ComplexNumber firstNumber, ComplexNumber secondNumber) => Multiply(firstNumber, secondNumber);
+        public static ComplexNumber operator /(ComplexNumber firstNumber, ComplexNumber secondNumber) => Division(firstNumber, secondNumber);
 
         public bool Equals(ComplexNumber number)
         {
@@ -72,10 +76,5 @@
         {
             return HashCode.Combine(_real, _imaginary);
         }
-
-        public static ComplexNumber operator +(ComplexNumber firstNumber, ComplexNumber secondNumber) => Add(firstNumber, secondNumber);
-        public static ComplexNumber operator -(ComplexNumber firstNumber, ComplexNumber secondNumber) => Substract(firstNumber, secondNumber);
-        public static ComplexNumber operator *(ComplexNumber firstNumber, ComplexNumber secondNumber) => Multiply(firstNumber, secondNumber);
-        public static ComplexNumber operator /(ComplexNumber firstNumber, ComplexNumber secondNumber) => Division(firstNumber, secondNumber);
     }
 }
