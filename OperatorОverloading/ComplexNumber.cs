@@ -2,47 +2,60 @@
 {
     public class ComplexNumber
     {
-        double _real;
-        double _imaginary;
-
-        public double Real => _real;
-        public double Imaginary => _imaginary;
+        private readonly double _real;
+        private readonly double _imaginary;
 
         public ComplexNumber(double real, double imaginary)
         {
             if (real == 0 && imaginary == 0)
-                throw new ArgumentException("Реальная и мнимай часть равны 0!");
+                throw new ArgumentException("Реальная и мнимай часть равны 0.");
             _real = real;
             _imaginary = imaginary;
         }
 
-        static public ComplexNumber Add(ComplexNumber firstNumber, ComplexNumber secondNumber)
+        public static ComplexNumber operator +(ComplexNumber firstNumber, ComplexNumber secondNumber)
         {
-            var real = firstNumber.Real + secondNumber.Real;
-            var imaginary = firstNumber.Imaginary + secondNumber.Imaginary;
+            if (firstNumber == null || secondNumber == null)
+                throw new ArgumentNullException("Комплексное(ые) число(а) пусты.");
+            if ((firstNumber._real == 0 && secondNumber._imaginary == 0) || (secondNumber._real == 0 && secondNumber._imaginary == 0))
+                throw new ArgumentException("Значение комплексного числа не верное.");
+            var real = firstNumber._real + secondNumber._real;
+            var imaginary = firstNumber._imaginary + secondNumber._imaginary;
             return new ComplexNumber(real, imaginary);
         }
 
-        static public ComplexNumber Substract(ComplexNumber firstNumber, ComplexNumber secondNumber)
+        public static ComplexNumber operator -(ComplexNumber firstNumber, ComplexNumber secondNumber)
         {
-            var real = firstNumber.Real - secondNumber.Real;
-            var imaginary = firstNumber.Imaginary - secondNumber.Imaginary;
+            if (firstNumber == null || secondNumber == null)
+                throw new ArgumentNullException("Комплексное(ые) число(а) пусты.");
+            if ((firstNumber._real == 0 && secondNumber._imaginary == 0) || (secondNumber._real == 0 && secondNumber._imaginary == 0))
+                throw new ArgumentException("Значение комплексного числа не верное.");
+            var real = firstNumber._real - secondNumber._real;
+            var imaginary = firstNumber._imaginary - secondNumber._imaginary;
             return new ComplexNumber(real, imaginary);
         }
 
-        static public ComplexNumber Multiply(ComplexNumber firstNumber, ComplexNumber secondNumber)
+        public static ComplexNumber operator *(ComplexNumber firstNumber, ComplexNumber secondNumber)
         {
-            var real = firstNumber.Real * secondNumber.Real - firstNumber.Imaginary * secondNumber.Imaginary;
-            var imaginary = firstNumber.Real * secondNumber.Real + firstNumber.Imaginary * secondNumber.Imaginary;
+            if (firstNumber == null || secondNumber == null)
+                throw new ArgumentNullException("Комплексное(ые) число(а) пусты.");
+            if ((firstNumber._real == 0 && secondNumber._imaginary == 0) || (secondNumber._real == 0 && secondNumber._imaginary == 0))
+                throw new ArgumentException("Значение комплексного числа не верное.");
+            var real = firstNumber._real * secondNumber._real - firstNumber._imaginary * secondNumber._imaginary;
+            var imaginary = firstNumber._real * secondNumber._real + firstNumber._imaginary * secondNumber._imaginary;
             return new ComplexNumber(real, imaginary);
         }
 
-        static public ComplexNumber Division(ComplexNumber firstNumber, ComplexNumber secondNumber)
+        public static ComplexNumber operator /(ComplexNumber firstNumber, ComplexNumber secondNumber)
         {
-            var realNumerator = firstNumber.Real * secondNumber.Real + firstNumber.Imaginary * secondNumber.Imaginary;
-            var imaginaryNumerator = secondNumber.Real * firstNumber.Imaginary - firstNumber.Real * secondNumber.Imaginary;
+            if (firstNumber == null || secondNumber == null)
+                throw new ArgumentNullException("Комплексное(ые) число(а) пусты.");
+            if ((firstNumber._real == 0 && secondNumber._imaginary == 0) || (secondNumber._real == 0 && secondNumber._imaginary == 0))
+                throw new ArgumentException("Значение комплексного числа не верное.");
+            var realNumerator = firstNumber._real * secondNumber._real + firstNumber._imaginary * secondNumber._imaginary;
+            var imaginaryNumerator = secondNumber._real * firstNumber._imaginary - firstNumber._real * secondNumber._imaginary;
 
-            var denominator = secondNumber.Real * secondNumber.Real + secondNumber.Imaginary * secondNumber.Imaginary;
+            var denominator = secondNumber._real * secondNumber._real + secondNumber._imaginary * secondNumber._imaginary;
 
             var real = realNumerator / denominator;
 
@@ -50,19 +63,15 @@
 
             return new ComplexNumber(real, imaginary);
         }
-        public static ComplexNumber operator +(ComplexNumber firstNumber, ComplexNumber secondNumber) => Add(firstNumber, secondNumber);
-        public static ComplexNumber operator -(ComplexNumber firstNumber, ComplexNumber secondNumber) => Substract(firstNumber, secondNumber);
-        public static ComplexNumber operator *(ComplexNumber firstNumber, ComplexNumber secondNumber) => Multiply(firstNumber, secondNumber);
-        public static ComplexNumber operator /(ComplexNumber firstNumber, ComplexNumber secondNumber) => Division(firstNumber, secondNumber);
 
         public bool Equals(ComplexNumber number)
         {
-            return number.Real == Real && number.Imaginary == Imaginary;
+            return number._real == _real && number._imaginary == _imaginary;
         }
 
         public override string ToString()
         {
-            return $"z = {Real} + i*{Imaginary}";
+            return $"z = {_real} + i*{_imaginary}";
         }
 
         public override bool Equals(object? obj)
