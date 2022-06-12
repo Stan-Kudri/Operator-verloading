@@ -17,8 +17,6 @@
         {
             if (firstNumber == null || secondNumber == null)
                 throw new ArgumentNullException("Комплексное(ые) число(а) пусты.");
-            if ((firstNumber._real == 0 && secondNumber._imaginary == 0) || (secondNumber._real == 0 && secondNumber._imaginary == 0))
-                throw new ArgumentException("Значение комплексного числа не верное.");
             var real = firstNumber._real + secondNumber._real;
             var imaginary = firstNumber._imaginary + secondNumber._imaginary;
             return new ComplexNumber(real, imaginary);
@@ -28,8 +26,6 @@
         {
             if (firstNumber == null || secondNumber == null)
                 throw new ArgumentNullException("Комплексное(ые) число(а) пусты.");
-            if ((firstNumber._real == 0 && secondNumber._imaginary == 0) || (secondNumber._real == 0 && secondNumber._imaginary == 0))
-                throw new ArgumentException("Значение комплексного числа не верное.");
             var real = firstNumber._real - secondNumber._real;
             var imaginary = firstNumber._imaginary - secondNumber._imaginary;
             return new ComplexNumber(real, imaginary);
@@ -39,8 +35,6 @@
         {
             if (firstNumber == null || secondNumber == null)
                 throw new ArgumentNullException("Комплексное(ые) число(а) пусты.");
-            if ((firstNumber._real == 0 && secondNumber._imaginary == 0) || (secondNumber._real == 0 && secondNumber._imaginary == 0))
-                throw new ArgumentException("Значение комплексного числа не верное.");
             var real = firstNumber._real * secondNumber._real - firstNumber._imaginary * secondNumber._imaginary;
             var imaginary = firstNumber._real * secondNumber._real + firstNumber._imaginary * secondNumber._imaginary;
             return new ComplexNumber(real, imaginary);
@@ -50,8 +44,6 @@
         {
             if (firstNumber == null || secondNumber == null)
                 throw new ArgumentNullException("Комплексное(ые) число(а) пусты.");
-            if ((firstNumber._real == 0 && secondNumber._imaginary == 0) || (secondNumber._real == 0 && secondNumber._imaginary == 0))
-                throw new ArgumentException("Значение комплексного числа не верное.");
             var realNumerator = firstNumber._real * secondNumber._real + firstNumber._imaginary * secondNumber._imaginary;
             var imaginaryNumerator = secondNumber._real * firstNumber._imaginary - firstNumber._real * secondNumber._imaginary;
 
